@@ -1,0 +1,41 @@
+﻿@model IEnumerable<Demo.web.Models.Domain.User>
+@{
+	ViewData["Title"] = "View Entries";
+}
+
+<div class="bg-secondary bg-opacity-10 py-2">
+	<div class="container">
+		<h1>View Entries</h1>
+	</div>
+</div>
+<form asp-action="DeleteSelected" method="post">
+	<table class="table table-responsive table-hover">
+		<thead>
+			<tr class="table-active">
+				<th></th>
+				<th>ID</th>
+				<th>Name</th>
+				<th>Date of Birth</th>
+				<th>City</th>
+				<th>Address</th>
+			</tr>
+		</thead>
+		<tbody>
+			@foreach(var User in Model)
+			{
+				<tr>
+						<td>
+							<input type="checkbox" name="selectedIds" value="@User.Id" />
+						</td>
+					<td>@User.Id</td>
+					<td>@User.FirstName @User.LastName</td>
+					<td>@User.DateOfBirth.ToShortDateString()</td>
+					<td>@User.City</td>
+					<td>@User.Address</td>
+
+				</tr>
+			}
+		</tbody>
+	</table>
+	 <button type="submit" class="btn btn-danger" >Delete Selected</button>
+</form>
